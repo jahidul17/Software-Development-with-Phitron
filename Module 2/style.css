@@ -1,0 +1,132 @@
+h1{
+    color: blue;
+}
+.header4{
+    color: pink;
+}
+
+#idno1{
+
+    color: rgb(6, 248, 23);
+    font-style: italic;
+}
+
+.box{
+    width: 200px;
+    border: 2px solid gray;
+    text-align: center;
+    padding: 20px;
+    margin: 50px;
+
+    /* position: fixed;
+    top: 0px; */
+
+
+}
+
+.block1{
+    /* display: none; */
+    /* display: block; */
+    display: inline;
+}
+.block2{
+    display: inline;
+}
+
+.description{
+    font-family: "Playwrite CU", cursive;
+  font-optical-sizing: auto;
+  font-weight: 300;
+
+}
+
+.box_all{
+   width: 250px;
+   height: 250px;
+   margin-top: 10px;
+}
+.box1{
+    border: 2px solid black;
+    position: relative;
+    left: 100px;
+    background-color:  green;
+}
+.box2{
+    border: 2px solid red;
+}
+.box3{
+    border: 2px solid blue;
+
+}
+.red{
+    width:50px;
+    height: 50px;
+    border-color: rgb(64, 0, 255);
+    background-color: rgb(234, 13, 32);
+    border-radius: 50px;
+    border: 1px solid rgb(115, 199, 117);
+    position: absolute;
+    left: 50px;
+    right: 50px;
+    top: 50px;
+
+}
+
+.line_1{
+    width: 300px;
+    height: 200px;
+    border: 1px solid gray;
+}
+.line_2{
+    width: 300px;
+    height: 200px;
+    border: 1px solid rgb(50, 200, 110);
+}
+.line_3{
+    width: 300px;
+    height: 200px;
+    border: 1px solid rgb(220, 74, 183);
+}
+.line_4{
+    width: 300px;
+    height: 200px;
+    border: 1px solid rgb(208, 216, 60);
+}
+
+.line_container{
+    margin-top: 30px;
+    /* for same line flex and justify */
+    display: flex;
+    /* justify-content: center; */
+    justify-content: space-around;
+
+    width: 100%;
+    height: 100vh;
+    border: 1px solid goldenrod;
+    align-items: center;
+
+    flex-wrap:  wrap;
+    
+}
+
+.banner{
+    width: 600px;
+    height: 400px;
+    border: 1px solid red;
+    margin: auto;
+    background-image: url('img/download.jpeg'),linear-gradient(45deg,red,blue,black );
+    background-blend-mode: overlay;
+    background-repeat:no-repeat ;
+    background-size: cover;
+}
+
+.boutton_one{
+    width: 200px;
+    padding: 30px;
+    background: linear-gradient(45deg,red,blue,black );
+}
+
+
+
+
+

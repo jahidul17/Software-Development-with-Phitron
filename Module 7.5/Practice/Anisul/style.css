@@ -1,0 +1,70 @@
+.main-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* .cart-container{
+    width: 50%;
+    box-shadow: 4px 4px 8px gray;
+    margin: auto;
+    te
+} */
+
+.product-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+.card {
+  border: 1px solid gray;
+  padding: 10px;
+}
+.card-image {
+  width: 300px;
+}
+.cart-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* ---------------- */
+
+/* .container-fluid {
+  width: 100%;
+  height: auto;
+  padding: 0px 0px 80px 0px;
+} */
+/* .container {
+  width: 1200px;
+  height: auto;
+  margin: auto;
+} */
+.search {
+  display: flex;
+  padding: 30px 0px;
+  justify-content: space-between;
+}
+.search h1 {
+  letter-spacing: 3px;
+  display: inline-block;
+  border-bottom: 2px solid green;
+  padding-bottom: 10px;
+}
+.search input {
+  width: 60%;
+  padding: 5px 16px;
+  background: transparent;
+  border: 1px solid #000;
+  font-size: 20px;
+  text-transform: capitalize;
+  letter-spacing: 3px;
+  outline: none;
+}
+.search input::placeholder {
+  color: green;
+  font-weight: 500;
+}

@@ -1,0 +1,137 @@
+*{
+    margin: 0px;
+    padding: 0px;
+
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: antiquewhite;
+}
+.logo{
+    width:60px;
+    height: 60px;
+}
+
+li{
+    list-style: none;
+    font-size: 20px;
+}
+
+li:hover{
+    color: blue;
+    cursor: pointer;
+}
+
+.menu-container{
+    display: flex;
+    gap: 15px;
+}
+
+.banner-img{
+    width: 300px;
+}
+.banner-container{
+    display: flex;
+    justify-content: space-around;
+    justify-content: center;
+}
+.banner-left{
+    width: 50%;
+    margin: auto;
+}
+.banner-right{
+    /* width: 50%; */
+    margin: auto;
+}
+.btn{
+    padding: 15px 25px;
+    border: none;
+    color: white;
+    cursor: pointer;
+   
+}
+.hire_btn{
+    background-color: rgb(8, 8, 8);
+}
+.project_btn{
+    background-color: blue;
+}
+.demo_containt{
+    font-size: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 150%;
+}
+.service-card{
+    width: 300px;
+    height: 400px;
+    /* border: 1px solid gray; */
+    box-shadow: 4px 4px 8px gray;
+    border-radius: 5px;
+    
+}
+.service_title{
+    text-align: center;
+    padding: 30px;
+}
+.services{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.serv_button{
+    padding: 10px;
+    background-color: beige;
+    border: none;
+    margin-top: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.contact_us{
+    padding: 50px;
+    width: 500px;
+    margin: auto;
+    box-shadow: 4px 4px 8px gray;
+    text-align: center;
+    margin-top: 30px; 
+    
+}
+.input_box{
+    padding: 15x;
+    width: 30%;
+    margin-top: 10px;
+}
+.message{
+    margin-top: 10px;
+    width: 400px;
+    height: 100px;
+}
+.submit_btn{
+    width: 25%;
+    background-color: rgb(184, 181, 197);
+    color: #070000;
+    border: none;
+    margin-top: 20px;
+}
+
+@media only screen and (min-width:400px) and (max-width:767px){
+    body{
+        background-color: pink;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:992px) {
+    body{
+        background-color: rgb(86, 84, 84);
+    }
+    .service_title{
+        color: aqua;
+    }
+}
+
+
+
