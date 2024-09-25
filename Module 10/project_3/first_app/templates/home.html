@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>This is first app home page.........</h1>
+
+    {% comment %} from backend {% endcomment %}
+    <h5>Author: {{author}}</h5>
+    <h5>Age: {{age}}</h5>
+    <h5>List: {{list}}</h5>
+
+    {% comment %} conditional statement {% endcomment %} {% if age >= 20 %}
+    <h4>You will get driving license.</h4>
+    {% elif age >= 10 and age <= 19 %}
+    <h4>You will not get driving license.</h4>
+    {% else %}
+    <h4>You are a child.</h4>
+    {%endif%} {% comment %} For loop {% endcomment %} {% for i in courses_list%}
+    <h4>{{i.id}} {{i.name}} {{i.fee}}</h4>
+    {% endfor %}
+
+    <h5>{{list}}</h5>
+    {% comment %} Popular Built-in Django Template Filters {% endcomment %}
+    <h5>{{ list | join:" - " }}</h5>
+
+    <h1>{{ birthday | date:"D d M Y" }}</h1>
+
+    <h4>{{ "Python is Fun" | cut:" " }}</h4>
+
+    <h2>{{ val | length }}</h2>
+
+    <h3>{{'Happy coding. Python is Fun.' | truncatechars:6}}</h3>
+    {% comment %} Truncatechars Filter {% endcomment %}
+
+    <h5>{{"Better days ahead!" | truncatewords:2}}</h5>
+  </body>
+</html>
