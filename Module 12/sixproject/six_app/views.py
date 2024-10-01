@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from . forms import contactForm,StudentData
+from . forms import contactForm,StudentData,PasswordValidationProject
 
 
 
@@ -41,12 +41,24 @@ def DjangoForm(request):
 
 
 
-def StudentForm(request):
+# def StudentForm(request):
+#     if request.method=='POST':
+#         form=StudentData(request.POST,request.FILES)
+#         if form.is_valid():
+#             print(form.cleaned_data)
+#     else:
+#         form=StudentData()
+#     return render(request,'./first_app/django_form.html',{'form':form})
+            
+
+
+def PasswordValidation(request):
     if request.method=='POST':
-        form=StudentData(request.POST,request.FILES)
+        form=PasswordValidationProject(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
     else:
-        form=StudentData()
+        form=PasswordValidationProject()
     return render(request,'./first_app/django_form.html',{'form':form})
-            
+  
+
