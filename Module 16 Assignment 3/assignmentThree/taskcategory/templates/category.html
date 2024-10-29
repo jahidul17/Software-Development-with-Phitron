@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% block content %}
+
+<form style="margin-left: 10%; margin-top: 20px" action="" method="post">
+  {% csrf_token %} {{cat_form.as_p}}
+  <button class="btn btn-warning">Save</button>
+</form>
+{% endblock %}
