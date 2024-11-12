@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>Wellcome to profile</h1>
+<h2>Hello {{user}}</h2>
+
+<p><a href="{% url 'passchange' %}">Change your password</a></p>
+<p><a href="{% url 'passchange_2' %}">Change your password without old password</a></p>
+{% endblock %}
