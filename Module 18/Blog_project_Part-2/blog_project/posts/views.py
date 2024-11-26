@@ -2,35 +2,42 @@ from django.shortcuts import render,redirect
 from . import forms
 from . import models
 # Create your views here.
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def add_post(request):
-    if request.method == 'POST':#user post request koreche
-        PostForm=forms.PostForm(request.POST)#user er post request data ekhane capture korlam
-        if PostForm.is_valid():#post kora data valid ki na check kortechi
-            PostForm.save() #jodi data valid hoy taile database e save hobe
-            return redirect('add_post')#sod thik thakle thake add category ai url e pathie diba
+    if request.method == 'POST':
+        post_form=forms.PostForm(request.POST)
+        if post_form.is_valid():
+            post_form.instance.author=request.user
+            post_form.save() 
+            return redirect('add_post')
         
     else: 
-        PostForm=forms.PostForm()
-    return render(request, 'add_post.html',{'form': PostForm})
+        post_form=forms.PostForm()
+    return render(request, 'add_post.html',{'form': post_form})
  
  
-
+@login_required
 def edit_post(request,id):
     post=models.Post.objects.get(pk=id)
-    PostForm=forms.PostForm(instance=post)
-    # print(post.title)
-    if request.method == 'POST':#user post request koreche
-        PostForm=forms.PostForm(request.POST,instance=post)#user er post request data ekhane capture korlam
-        if PostForm.is_valid():#post kora data valid ki na check kortechi
-            PostForm.save() #jodi data valid hoy taile database e save hobe
-            return redirect('homepage')#sod thik thakle thake add category ai url e pathie diba
+    post_form=forms.PostForm(instance=post)
+    if request.method == 'POST':
+        post_form=forms.PostForm(request.POST,instance=post)
+        if post_form.is_valid():
+            post_form.instance.author=request.user
+            post_form.save() 
+            return redirect('homepage')
         
-    return render(request, 'add_post.html',{'form': PostForm})
+    return render(request, 'add_post.html',{'form': post_form})
  
 
+login_required
 def delete_post(request, id):
     post=models.Post.objects.get(pk=id)
     post.delete()
     return redirect('homepage')
+
+
     
