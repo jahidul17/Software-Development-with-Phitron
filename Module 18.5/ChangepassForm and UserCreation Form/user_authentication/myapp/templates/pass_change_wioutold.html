@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block main %}
+
+<form method="post" action="" style="width: 50%; margin: auto" novalidate>
+  <!--{{form | crispy}}-->
+  {% csrf_token %}
+  <h4>Change Password without old Password</h4>
+  <br />
+  {% for fm in form %} {{fm.label_tag}} {{fm}} {{ fm.errors|striptags}}
+  <br />
+  {% endfor %}
+  <br />
+  <button class="btn btn-warning">Submit</button>
+</form>
+
+{% endblock %}
