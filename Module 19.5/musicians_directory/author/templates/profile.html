@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% block main %}
+<br />
+{% if messages %} {% for m in messages %}
+<!--<small {%if m.tags %} class="{{m.tags}}" {% endif %}>{{m}} </small> This tag use for conditional css and create class-->
+<small class="bg-success p-3 text-white">{{m}} </small>
+
+{% endfor %} {% endif %}
+
+<h3>Well come to profile.</h3>
+<h4>Hello {{user}}</h4>
+
+<p>
+  <a class="btn btn-warning" href="{% url 'ChangePass_page' %}"
+    >Change Your password</a
+  >
+</p>
+
+<br />
+<br />
+<p>
+  <a class="btn btn-success" href="{% url 'edit_profile_page' %}"
+    >Edit User Profile</a
+  >
+</p>
+
+{% if data %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Musician Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Album Rating</th>
+      <th scope="col">Instrument Type</th>
+      <th scope="col">Album Name</th>
+      <th scope="col">Release Date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for info in data %}
+    <tr>
+      <th scope="row">{{info.music_author.id}}</th>
+      <td>{{info.music_author.first_name}} {{info.music_author.last_name}}</td>
+      <td>{{info.music_author.email}}</td>
+      <td>{{info.rating}}</td>
+      <td>{{info.music_author.instrument}}</td>
+      <td>{{info.album_name}}</td>
+      <td>{{info.release_date}}</td>
+      <td>
+        <button type="button" class="btn btn-info">Edit</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<h4>Data have not found.</h4>
+
+{% endif %}
+<br />
+{% endblock %}

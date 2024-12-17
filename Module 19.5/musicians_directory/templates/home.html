@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block main %}
+<h2>This is Home page</h2>
+<br />
+{% if data %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Musician Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Album Rating</th>
+      <th scope="col">Instrument Type</th>
+      <th scope="col">Album Name</th>
+      <th scope="col">Release Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for info in data %}
+    <tr>
+      <th scope="row">{{info.music_author.id}}</th>
+      <td>{{info.music_author.first_name}} {{info.music_author.last_name}}</td>
+      <td>{{info.music_author.email}}</td>
+      <td>{{info.rating}}</td>
+      <td>{{info.music_author.instrument}}</td>
+      <td>{{info.album_name}}</td>
+      <td>{{info.release_date}}</td>
+      <td>{{info.email}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endif %} {% endblock %}

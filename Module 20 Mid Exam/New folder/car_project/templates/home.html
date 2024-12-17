@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<div class="d-flex flex-wrap px-5 pt-5 align-items-center">
+  <div class="col-5 px-20">
+    <h1>Wellcome to CartMart Blog</h1>
+    <p>
+      The first Range Rover prototype was built in 1967 with plate number SYE
+      157F. The design of the Range Rover was finalised in 1969. Twenty-six
+      Velar-badged engineering development vehicles were built between 1969 and
+      1970 and were road registered with the number plates YVB151H through to
+      YVB177H.[5] Though being chassis no. 3, YVB 153H is believed to have been
+      the first off the production line as a vehicle in that colour was urgently
+      required for marketing. The Range Rover with chassis no. 1 was a green
+      model with the registration "YVB 151H",[6] and is now on exhibition at
+      Huddersfield Land Rover Centre, Huddersfield, West Yorkshire. The Velar
+      name was derived from the Italian "velare" meaning to veil or to cover.[7]
+      Range Rover development engineer Geof Miller used the name as a decoy for
+      registering pre-production Range Rovers. The Velar company was registered
+      in London and produced 40 pre-production vehicles that were built between
+      1967 and 1970.[7] Conveniently the badging could be made up utilising
+      existing letters from the word "Land Rover".
+    </p>
+  </div>
+  <div class="col-5" style="margin-left: 5%">
+    <center>
+      <img style="width: 700; height: 400;" src="{% static "Die_cast_car.png"%}"
+      class="img-thumbnail" alt="...">
+    </center>
+  </div>
+</div>
+
+<div class="d-flex flex-wrap p-4">
+  <div class="p-3">
+    {% for brand in brands %}
+    <button type="button" class="btn btn-secondary">
+      <a
+        href="{% url 'category_wise_post' brand.slug %}"
+        class="text-decoration-none text-white"
+        >{{brand.name}}</a
+      >
+    </button>
+    {% endfor %}
+  </div>
+
+  <div class="col-10 p-3">
+    <h4>Total Car Found : {{data | length }}</h4>
+    <div class="d-flex flex-wrap pt-5">
+      {% for post in data %}
+
+      <div class="col-sm-3">
+        <div class="card mx-2">
+          <img
+            style="width: 360; height: 300"
+            class="card-img-top"
+            src="{{post.image.url}}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{post.model}}</h5>
+            <p class="card-text">{{post.content | truncatewords:10 }}</p>
+            <p>Brand : {{ post.brand.name}}</p>
+            <p>Price : ${{ post.price}}</p>
+            <button type="button" class="btn btn-outline-info">
+              <a
+                href="{% url 'details_post' post.id %}"
+                class="text-decoration-none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
