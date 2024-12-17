@@ -8,9 +8,8 @@
 {% endfor %} {% endif %}
 
 <form method="post" action="" style="width: 30%; margin: auto" novalidate>
-  <!--novalidate means we have not use show vlidation message form django-->
   <!--{{form | crispy }}-->
-  <!--Remove help text and show first label then box then error message and  striptags use for error message without bollen-->
+
   {% csrf_token %}
   <br />
   {% for fm in form %} {{fm.label_tag }} {{fm}} {{fm.errors|striptags}}

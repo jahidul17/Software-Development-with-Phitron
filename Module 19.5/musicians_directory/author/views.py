@@ -6,11 +6,8 @@ from django.contrib.auth import authenticate,login,logout,update_session_auth_ha
 from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm,SetPasswordForm
 from albums import models
 
+
 # Create your views here.
-def home(request):
-#     return HttpResponse("This is my app.")
-#     form=RegisterForm()
-    return render(request,'home.html')
 
 def signup(request):
     if not request.user.is_authenticated:
@@ -19,13 +16,12 @@ def signup(request):
             if form.is_valid():
                 messages.success(request,'Account created successfully')
                 form.save(commit=True)
-                # print(form.cleaned_data) #for show submit data
+                
         else:
             form=RegisterForm()
         return render(request,'signup.html',{'form':form})
     else:
         return redirect('profile_page')
-    
 
 
 def user_login(request):
@@ -36,13 +32,12 @@ def user_login(request):
                 messages.success(request,'Logged In Successfully')
                 name=form.cleaned_data['username']
                 user_pass=form.cleaned_data['password']
-                user=authenticate(username=name,password=user_pass) #check user form database               
+                user=authenticate(username=name,password=user_pass)       
                 if user is not None:
                     login(request,user)
                     return redirect('profile_page')
             else:
                 messages.info(request,'Login faild!')
-            #     return redirect('home_page')
         
         else:
             form=AuthenticationForm()
@@ -58,6 +53,8 @@ def profile(request):
         return render(request, './profile.html',{'user':request.user,'data':data})
     else:
         return redirect('login_page')
+    
+
     
     
 def user_logout(request):
@@ -105,3 +102,5 @@ def edit_profile(request):
     else:
         form=ChangeUserData(instance=request.user)
     return render(request,'edit_profile.html',{'form':form})
+
+

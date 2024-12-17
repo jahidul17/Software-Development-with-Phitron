@@ -3,15 +3,9 @@
 {% block main %}
 
 <form method="post" action="" style="width: 50%; margin: auto" novalidate>
-  <!--novalidate means we have not use show vlidation message form django-->
   <h4>Login Page</h4>
   <!--{{form | crispy }}-->
 
-  <!--
-    {% if messages %} {% for m in messages %}
-  <small {% if m.tags %} class="{{m.tags}}" {% endif %}>{{m}}</small>
-  {% endfor %} {% endif %}
-  -->
   {% if messages %} {% for m in messages %}
   <small class="bg-danger text-white p-2">{{m}}</small>
   {% endfor %} {% endif %}

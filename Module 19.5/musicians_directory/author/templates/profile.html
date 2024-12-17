@@ -1,22 +1,21 @@
-{% extends "base.html" %} {% block main %}
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block main %}
 <br />
 {% if messages %} {% for m in messages %}
-<!--<small {%if m.tags %} class="{{m.tags}}" {% endif %}>{{m}} </small> This tag use for conditional css and create class-->
 <small class="bg-success p-3 text-white">{{m}} </small>
 
 {% endfor %} {% endif %}
 
 <h3>Well come to profile.</h3>
+<!--
 <h4>Hello {{user}}</h4>
+-->
 
+{% csrf_token %}
 <p>
   <a class="btn btn-warning" href="{% url 'ChangePass_page' %}"
     >Change Your password</a
   >
 </p>
-
-<br />
-<br />
 <p>
   <a class="btn btn-success" href="{% url 'edit_profile_page' %}"
     >Edit User Profile</a
@@ -49,8 +48,12 @@
       <td>{{info.album_name}}</td>
       <td>{{info.release_date}}</td>
       <td>
-        <button type="button" class="btn btn-info">Edit</button>
-        <button type="button" class="btn btn-danger">Delete</button>
+        <a href="{% url 'edit_album' info.id %}" class="btn btn-warning"
+          >Edit</a
+        >
+        <a href="{% url 'delete_album' info.id %}" class="btn btn-danger"
+          >Delete</a
+        >
       </td>
     </tr>
     {% endfor %}
