@@ -12,5 +12,5 @@ class Transaction(models.Model):
     loan_approve=models.BooleanField(default=False)
     
     class Meta:
-        ordering=['timestamp']
+        ordering=['timestamp'] #time er upor base kore sort korbo.
 
