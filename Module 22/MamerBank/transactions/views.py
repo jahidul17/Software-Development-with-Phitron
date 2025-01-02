@@ -10,30 +10,34 @@ from datetime import datetime
 from django.db.models import Sum  
 from django.views import View
 from django.shortcuts import get_object_or_404,redirect
-
+from django.urls import reverse_lazy
 # Create your views here.
 # ei view ke inherit kore amrea deposite,withdraw,loan request er kaj korbo.
 class TransactionCreateMixin(LoginRequiredMixin, CreateView):
-    template_name=''
+    template_name='transactions/transaction_form.html'
     model=Transaction
     title=''
-    success_url=''
+    success_url=reverse_lazy('transaction_report')
     
-    #Return the keyword arguments for instantiating the form.
+
     def get_form_kwargs(self):
-        kwargs=super().get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         kwargs.update({
-            'account':self.request.user.account,# je user request korse tar account.
+            'account': self.request.user.account
         })
         return kwargs
          
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update({
-            'title':self.title
-        }) 
-        return context
+
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) # template e context data pass kora
+        context.update({
+            'title': self.title
+        })
+
+        return context
+
+
 
 class DepositMoneyView(TransactionCreateMixin):
     form_class=DepositForm
@@ -63,7 +67,7 @@ class WithdrawMoneyView(TransactionCreateMixin):
     
     #By default set value in backend when user visit Deposit form
     def get_initial(self):
-        initial={'transaction_type':DEPOSIT}
+        initial={'transaction_type':WITHDRAWAL}
         return initial
     
     # Is form valid like request.POST method if form valid
@@ -101,13 +105,15 @@ class LoanRequestView(TransactionCreateMixin):
 
 
 class TransactionReportView(LoginRequiredMixin,ListView):
-    template_name=""
+    template_name="transactions/transaction_report.html"
     model=Transaction
     balance=0
+    context_object_name="report_list"
     
     def get_queryset(self):
         #jodi user kono type filter na kora taile tar total transaction report dekhabo.
         queryset=super().get_queryset().filter(
+            # account=self.request.user.account
             account=self.request.user.account
         )
         start_date_str=self.request.GET.get('start_date')
@@ -117,10 +123,11 @@ class TransactionReportView(LoginRequiredMixin,ListView):
             start_date=datetime.strptime(start_date_str, "%Y-%m-%d").date()
             end_date=datetime.strptime(end_date_str, "%Y-%m-%d").date()
 
-            queryset=queryset.filter(timestamp_date_gte =start_date,timestamp_date_lte=end_date)
+            queryset=queryset.filter(timestamp__date__gte =start_date,timestamp__date__lte=end_date)
             #here timestamp is variable form model then date and then gte menas greaterthan, lte means lessthan
        
-            self.balance=Transaction.objects.filter(timestamp_date_gte =start_date,timestamp_date_lte=end_date).aggregate(sum('amount'))['amount__sum']
+            self.balance=Transaction.objects.filter(timestamp__date__gte =start_date,timestamp__date__lte=end_date).aggregate(Sum('amount'))['amount__sum']
+            
         else: 
             self.balance=self.request.user.account.balance
                    
@@ -132,28 +139,35 @@ class TransactionReportView(LoginRequiredMixin,ListView):
             'account':self.request.user.account
         })
         return context
+    
 
-
-class PayLoanView(LoginRequiredMixin,View):
-    def get(self,request,loan_id):
-        loan=get_object_or_404(Transaction,id=loan_id)
-        
-        if loan.loan_approve():#ekjon user loan pay korte parbe tokhni jkn tar loan approve hobe
-            user_account=loan.account
-            if loan.amount<user_account.balance:
-                user_account.balance-=loan.amount
-                loan.balance_after_transaction=user_account.balance
+class PayLoanView(LoginRequiredMixin, View):
+    def get(self, request, loan_id):
+        loan = get_object_or_404(Transaction, id=loan_id)
+        print(loan)
+        if loan.loan_approve:
+            user_account = loan.account
+                # Reduce the loan amount from the user's balance
+                # 5000, 500 + 5000 = 5500
+                # balance = 3000, loan = 5000
+            if loan.amount < user_account.balance:
+                user_account.balance -= loan.amount
+                loan.balance_after_transaction = user_account.balance
                 user_account.save()
-                loan.transaction_type=LOAN_PAID
+                loan.loan_approved = True
+                loan.transaction_type = LOAN_PAID
                 loan.save()
+                return redirect('loan_list')
             else:
-                messages.error(self.request,f"Loan amount is greater than avaliable balance.")
-                return redirect()
+                messages.error(self.request,f'Loan amount is greater than available balance')
+
+        return redirect('loan_list')
+
 
 
 class LoanListView(LoginRequiredMixin,ListView):
     model=Transaction
-    template_name=""
+    template_name="transactions/loan_request.html"
     context_object_name="loans"
     
     def get_queryset(self):
@@ -161,3 +175,4 @@ class LoanListView(LoginRequiredMixin,ListView):
         queryset=Transaction.objects.filter(account=user_account,transaction_type=LOAN)
         return queryset
 
+  
