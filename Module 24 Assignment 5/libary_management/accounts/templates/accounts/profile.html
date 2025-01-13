@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block main %}
+<br />
+{% if messages %} {% for m in messages %}
+<!--<small {%if m.tags %} class="{{m.tags}}" {% endif %}>{{m}} </small> This tag use for conditional css and create class-->
+<small class="bg-success p-3 text-white">{{m}} </small>
+
+{% endfor %} {% endif %}
+
+<h3>Well come to profile.</h3>
+<h4>Hello {{user}}</h4>
+
+<p>
+  <a class="btn btn-warning" href="{% url 'password_change_page' %}"
+    >Change Your password</a
+  >
+</p>
+
+<br />
+
+
+<br />
+<br />
+<p>
+  <a class="btn btn-success" href="{% url 'edit_profile_page' %}"
+    >Edit User Profile</a
+  >
+</p>
+{% endblock %}

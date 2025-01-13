@@ -24,6 +24,7 @@ class Transaction(models.Model):
 #     timestamp=models.DateField(auto_now_add=True,blank=True,null=True)
     
 
-    
+class Bankrupt(models.Model):
+    is_bankrupt = models.BooleanField(default=False) 
     
 

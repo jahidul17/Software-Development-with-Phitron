@@ -213,38 +213,3 @@ class SendMoneyView(TransactionCreateMixin):
                          amount} has been sent to Account:  {account_no}""")
         return super().form_valid(form)
 
-
-# def MoneyTransferView(self,request):
-#     print(request)
-#     if request.method=='POST':
-#         form=MoneyTransferForm(request.POST)
-#         sender=self.request.sendmoney_account.account_no
-#         receiver=form.cleaned_data.get('receivemoney_account')
-#         amount=form.cleaned_data.get('amount')       
-      
-#         if form.is_valid():
-#             if receiver is not None:
-#                 sender.balance -= amount 
-#                 sender.save(
-#                 update_fields=['balance']
-#                 )
-#                 receiver.balance += amount
-#                 receiver.save(
-#                     update_fields=['balance']
-#                 )
-#                 form.save()            
-#                 messages.success(request,"Money transfer successfuly.")
-#                 return redirect('homepage')
-#             else:
-#                 messages.error(request,'Receiver account is not found.')
-#         else:
-#             messages.error(request,"Money transfer faild!")
-    
-#     else:
-#         form=MoneyTransferForm()
-        
-#     return render(request,'transactions/moneytransfer.html',{'form':form})
-
-
-    
-    

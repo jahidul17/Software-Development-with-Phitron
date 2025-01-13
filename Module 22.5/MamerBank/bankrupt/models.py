@@ -4,3 +4,4 @@ from django.db import models
 
 class Bankrupt(models.Model):
     is_bankrupt = models.BooleanField(default=False)
+    class meta
