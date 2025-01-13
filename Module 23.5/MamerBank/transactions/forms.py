@@ -2,6 +2,7 @@ from django import forms
 from .models import Transaction
 from accounts.models import UserBankAccount
 
+
 class TransactionForm(forms.ModelForm):
     class Meta:
         model=Transaction

@@ -15,6 +15,7 @@ from django.urls import reverse_lazy
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from accounts.models import UserBankAccount
+from bankrupt.models import Bankrupt
 
 # Create your views here.
 # ei view ke inherit kore amrea deposite,withdraw,loan request er kaj korbo.
@@ -91,6 +92,11 @@ class WithdrawMoneyView(TransactionCreateMixin):
     # Is form valid like request.POST method if form valid
     def form_valid(self, form):
         amount=form.cleaned_data.get('amount')
+        
+        # bankrupt = Bankrupt.objects.filter(is_bankrupt=True)        
+        # if bankrupt:
+        #     messages.error("Bank has gone bankrupt")
+        
         account=self.request.user.account
         account.balance -= amount #user er kache 1500 taka, ami withdrewl korlam 1000. total balance 500tk.
         account.save(
