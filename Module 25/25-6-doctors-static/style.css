@@ -1,0 +1,76 @@
+body{
+    width: 80%;
+    /* border: 1px solid gray; */
+    margin: auto;
+    background-color: azure;
+}
+li{
+    list-style: none;
+}
+nav{
+    background-color: aqua;
+}
+.menu{
+    font-size: 20px;
+}
+.menu:hover{
+    color: white; 
+     cursor: pointer;
+
+}
+.banner-container{
+    width: 80%;
+    height: 500px;
+    margin: auto;
+    padding: 30px;
+}
+.banner-left{
+    margin-left: 30px;
+}
+.banner{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(rgb(5, 242, 242),rgb(3, 131, 131));
+    box-shadow: 4px 4px 8px gray;
+    border-radius: 10px;
+}
+.bn-img{
+    /* width: 120%; */
+    margin-top: -60px;
+}
+.service-container{
+    width: 1200px;
+    margin: auto;
+}
+.title{
+    font-size: 44px;
+    color: aqua;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.doctors-container{
+    margin-top: 50px;
+    padding: 30px;
+}
+
+.doc-card{
+    width: 300px;
+    height: 330px;
+    box-shadow: 4px 4px 8px gray;
+    border-radius: 10px;
+    text-align: center;
+    padding:15px;    ;
+}
+.doc-img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
+#search{
+    padding: 10px;
+    width: 75%;
+    border:none ;
+}
+
