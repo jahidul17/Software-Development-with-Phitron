@@ -17,7 +17,7 @@ class AppointmentAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form,change):
         obj.save()
-        if obj.appointment_status=="Running" and obj.appointment_types=="online":
+        if obj.appointment_status=="Running" and obj.appointment_types=="Online":
             email_subject="Your online appointment is running."
             email_body=render_to_string('admin_email.html',{'user':obj.patient.user, 'doctor':obj.doctor})
             email=EmailMultiAlternatives(email_subject, '',to=[obj.patient.user.email])
